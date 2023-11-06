@@ -1,0 +1,150 @@
+.round-button-up {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    color: #000; 
+    text-align: center;
+    line-height: 40px;
+    transition: background-color 0.3s;
+}
+
+.round-button-up:hover {
+    background-color: #32CD32; 
+}
+
+.round-button-up::before {
+    content: '\2191'; 
+    font-size: 24px; 
+}
+
+.round-button-down {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #fff; 
+    color: #000; 
+    text-align: center;
+    line-height: 40px;
+    transition: background-color 0.3s;
+}
+
+.round-button-down:hover {
+    background-color: #d73a3a; 
+}
+
+.round-button-down::before {
+    content: '\2193'; 
+    font-size: 24px; 
+}
+
+.round-button-mark {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #fff; 
+    color: #000; 
+    text-align: center;
+    line-height: 40px;
+    transition: background-color 0.3s;
+}
+    
+.round-button-mark:hover {
+    background-color: #d3d3d3; 
+}
+    
+.round-button-mark::before {
+    content: '\002B'; 
+    font-size: 24px; 
+}
+
+main > .container {
+    padding: 60px 15px 0;
+}
+
+.title {
+    font-size: 50px;
+    margin-top:20px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+.question {
+    border: 3px solid grey;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.answer {
+    border: 3px solid grey;
+    margin-top: 30px;
+    padding: 20px;
+}
+.avatar-image {
+    max-width: 150px;
+    max-heigth: 150px;
+    border: 3px solid grey;
+}
+
+.question-title {
+    font-size: 20px;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+.tags{
+    max.width = 100px;
+}
+
+.head-title {
+    font-size: 30px;
+    margin-top:20px;
+    margin-left: 40px;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 35px;
+  margin-left: 40%;
+  margin-bottom: 8px;
+  border-color: black;
+  border-radius: 30px;
+  font-size: 17px;
+}
+
+
+
+.typebtn {
+  margin-top: 40px;
+  background: green;
+  box-shadow: 2px 3px 0px 0 black;
+}
+
+.typebtn span {
+  color: black;
+  padding: 3px 5px;
+}
+
+.pagebtn {
+  float: left;
+  margin-left: 7px;
+  margin-top: 20px;
+  background: white;
+
+  box-shadow: 2px 3px 0px 0 black;
+}
+
+.pagebtn span {
+
+  color: black;
+  padding: 5px 5px;
+}
+
+.votes {
+    border: 3px solid grey;
+    margin-top: 15px;
+    max-width: 150px;
+    max-heigth: 150px;
+}
