@@ -1,3 +1,4 @@
+{% load static %}
 
 <!doctype html>
 <html lang="en" class="h-100">
@@ -63,7 +64,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    <h1 class="title">AskPupkin</h1>
+                    <h1 class="title"><a href="{% url 'home' %}">AskPupkin</a></h1>
                 </div>
 
                 <div class="col-5">
@@ -77,8 +78,8 @@
 
                 <div class="col-4">
                     <p>
-                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="">log in</a></div>
-                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="">register</a></div>
+                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="{% url 'login' %}">log in</a></div>
+                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="{% url 'signup' %}">register</a></div>
                     </p>
                 </div>
 
@@ -96,108 +97,109 @@
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <h1>New questions</h1>
+                {% block content %}{% endblock %}
+<!--                <h1>New questions</h1>-->
 
 
 
-                <div class="row question">
-                <div class="col-3">
-                    <img src="../static/imgs/12.png.webp" alt="" class="question-image">
-                    <div class="votes">
-                        <div style="display: flex;">
-                            <div style="margin-left:45px; margin-right:45px;">5</div>
-                            <button>+</button>
-                            <button>-</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="question-title">First Question </div>
-                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <div>
-                        <p style="margin-top: 15px;">
-                            <a href="" style="padding-right:40px">answer (1)</a>
-                            Tags:
-                            <a href="" style="padding-right:4px">first-tag</a>
-                            <a href="" style="padding-right:4px">second-tag</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+<!--                <div class="row question">-->
+<!--                <div class="col-3">-->
+<!--                    <img src="../static/imgs/12.png.webp" alt="" class="question-image">-->
+<!--                    <div class="votes">-->
+<!--                        <div style="display: flex;">-->
+<!--                            <div style="margin-left:45px; margin-right:45px;">5</div>-->
+<!--                            <button>+</button>-->
+<!--                            <button>-</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <div class="question-title">First Question </div>-->
+<!--                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been-->
+<!--                    the industry's standard dummy text ever since the 1500s, when an unknown printer took-->
+<!--                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,-->
+<!--                    but also the leap into electronic typesetting, remaining essentially unchanged.-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <p style="margin-top: 15px;">-->
+<!--                            <a href="" style="padding-right:40px">answer (1)</a>-->
+<!--                            Tags:-->
+<!--                            <a href="" style="padding-right:4px">first-tag</a>-->
+<!--                            <a href="" style="padding-right:4px">second-tag</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-                <div class="row question">
-                <div class="col-3">
-                    <img src="../static/imgs/12.png.webp" alt="" class="question-image">
-                    <div class="votes">
-                        <div style="display: flex;">
-                            <div style="margin-left:45px; margin-right:45px;">5</div>
-                            <button>+</button>
-                            <button>-</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="question-title">Second Question </div>
-                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <div>
-                        <p style="margin-top: 15px;">
-                            <a href="" style="padding-right:40px">answer (2)</a>
-                            Tags:
-                            <a href="" style="padding-right:4px">first-tag</a>
-                            <a href="" style="padding-right:4px">second-tag</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+<!--                <div class="row question">-->
+<!--                <div class="col-3">-->
+<!--                    <img src="../static/imgs/12.png.webp" alt="" class="question-image">-->
+<!--                    <div class="votes">-->
+<!--                        <div style="display: flex;">-->
+<!--                            <div style="margin-left:45px; margin-right:45px;">5</div>-->
+<!--                            <button>+</button>-->
+<!--                            <button>-</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <div class="question-title">Second Question </div>-->
+<!--                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been-->
+<!--                    the industry's standard dummy text ever since the 1500s, when an unknown printer took-->
+<!--                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,-->
+<!--                    but also the leap into electronic typesetting, remaining essentially unchanged.-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <p style="margin-top: 15px;">-->
+<!--                            <a href="" style="padding-right:40px">answer (2)</a>-->
+<!--                            Tags:-->
+<!--                            <a href="" style="padding-right:4px">first-tag</a>-->
+<!--                            <a href="" style="padding-right:4px">second-tag</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-                <div class="row question">
-                <div class="col-3">
-                    <img src="../static/imgs/12.png.webp" alt="" class="question-image">
-                    <div class="votes">
-                        <div style="display: flex;">
-                            <div style="margin-left:45px; margin-right:45px;">5</div>
-                            <button>+</button>
-                            <button>-</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="question-title">Third Question </div>
-                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <div>
-                        <p style="margin-top: 15px;">
-                            <a href="" style="padding-right:40px">answer (3)</a>
-                            Tags:
-                            <a href="" style="padding-right:4px">first-tag</a>
-                            <a href="" style="padding-right:4px">second-tag</a>
-                        </p>
-                    </div>
-                </div>
-                </div>
+<!--                <div class="row question">-->
+<!--                <div class="col-3">-->
+<!--                    <img src="../static/imgs/12.png.webp" alt="" class="question-image">-->
+<!--                    <div class="votes">-->
+<!--                        <div style="display: flex;">-->
+<!--                            <div style="margin-left:45px; margin-right:45px;">5</div>-->
+<!--                            <button>+</button>-->
+<!--                            <button>-</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <div class="question-title">Third Question </div>-->
+<!--                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been-->
+<!--                    the industry's standard dummy text ever since the 1500s, when an unknown printer took-->
+<!--                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,-->
+<!--                    but also the leap into electronic typesetting, remaining essentially unchanged.-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <p style="margin-top: 15px;">-->
+<!--                            <a href="" style="padding-right:40px">answer (3)</a>-->
+<!--                            Tags:-->
+<!--                            <a href="" style="padding-right:4px">first-tag</a>-->
+<!--                            <a href="" style="padding-right:4px">second-tag</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                </div>-->
 
-                <div>
-                    <p>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">1</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">2</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">3</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">...</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">53</a></button>
+<!--                <div>-->
+<!--                    <p>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">1</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">2</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">3</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">...</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">53</a></button>-->
 
-                    </p>
+<!--                    </p>-->
 
-                </div>
+<!--                </div>-->
             </div>
             <div class="col-4">
                 <div class="row">

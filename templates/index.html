@@ -1,253 +1,291 @@
+{% extends 'inc/base.html' %}
 
-<!doctype html>
-<html lang="en" class="h-100">
-  <head>
-    <!-- Bootstrap core CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <!-- Favicons -->
+{% block content %}
+    <h1>{{ title }}</h1>
+    {% for question in questions %}
+        <div class="row question">-->
+                <div class="col-3">
+                    <img src="{{ question.author_img }}" alt="" class="question-image">
+                    <div class="votes">
+                        <div style="display: flex;">
+                            <div style="margin-left:45px; margin-right:45px;">{{ question.rating }}</div>
+                            <button>+</button>
+                            <button>-</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="question-title"><a href="{% url 'question' question.id %}">{{ question.title }}</a></div>
+                    <div class="question-text">{{ question.content|truncatechars:400 }}</div>
+                    <div>
+                        <p style="margin-top: 15px;">
+                            <a href="/question/{{ question.id }}" style="padding-right:40px">answer (2)</a>
+                            Tags:
+                            {% for tag in question.tags %}
+                                <a href="{% url "tag_list" tag.name %}">{{ tag.name }}</a>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+
+    {% include 'pagination.html' %}
+{% endblock %}
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
 
-    <!-- Custom styles for this template -->
-    <link href="../static/css/my.css" rel="stylesheet">
-  </head>
-  <body class="d-flex flex-column h-100">
 
-<header>
-  <!-- Fixed navbar -->
-<!--  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">-->
-<!--    <div class="container-fluid">-->
-<!--      <a class="navbar-brand" href="#">AskPupkin</a>-->
-<!--      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--      </button>-->
-<!--      <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--<!doctype html>-->
+<!--<html lang="en" class="h-100">-->
+<!--  <head>-->
+<!--    &lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
+<!--    &lt;!&ndash; Favicons &ndash;&gt;-->
 
-<!--        <form class="d-flex">-->
-<!--          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--          <button class="btn btn-outline-success" type="submit">Search</button>-->
-<!--        </form>-->
 
-<!--          <ul class="navbar-nav me-auto mb-2 mb-md-0">-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link active" aria-current="page" href="#">Home</a>-->
-<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link" href="#">Link</a>-->
-<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">register</a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </div>-->
+<!--    <style>-->
+<!--      .bd-placeholder-img {-->
+<!--        font-size: 1.125rem;-->
+<!--        text-anchor: middle;-->
+<!--        -webkit-user-select: none;-->
+<!--        -moz-user-select: none;-->
+<!--        user-select: none;-->
+<!--      }-->
+
+<!--      @media (min-width: 768px) {-->
+<!--        .bd-placeholder-img-lg {-->
+<!--          font-size: 3.5rem;-->
+<!--        }-->
+<!--      }-->
+<!--    </style>-->
+
+
+<!--    &lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+<!--    <link href="../static/css/my.css" rel="stylesheet">-->
+<!--  </head>-->
+<!--  <body class="d-flex flex-column h-100">-->
+
+<!--<header>-->
+<!--  &lt;!&ndash; Fixed navbar &ndash;&gt;-->
+<!--&lt;!&ndash;  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="container-fluid">&ndash;&gt;-->
+<!--&lt;!&ndash;      <a class="navbar-brand" href="#">AskPupkin</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="navbar-toggler-icon"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;      </button>&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="collapse navbar-collapse" id="navbarCollapse">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <form class="d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">&ndash;&gt;-->
+<!--&lt;!&ndash;          <button class="btn btn-outline-success" type="submit">Search</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;          <ul class="navbar-nav me-auto mb-2 mb-md-0">&ndash;&gt;-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link active" aria-current="page" href="#">Home</a>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link" href="#">Link</a>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">register</a>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </nav>&ndash;&gt;-->
+
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-3">-->
+<!--                    <h1 class="title">AskPupkin</h1>-->
+<!--                </div>-->
+
+<!--                <div class="col-5">-->
+<!--                    <p>-->
+<!--                        <searchbar class="topnav"><input type="text" placeholder="Search.."></searchbar>-->
+<!--                        <button class="typebtn"><span>ASK!</span></button>-->
+
+<!--                    </p>-->
+
+<!--                </div>-->
+
+<!--                <div class="col-4">-->
+<!--                    <p>-->
+<!--                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="">log in</a></div>-->
+<!--                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="">register</a></div>-->
+<!--                    </p>-->
+<!--                </div>-->
+
+
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--    <hr style="height:3px;">-->
+
+<!--</header>-->
+
+<!--&lt;!&ndash; Begin page content &ndash;&gt;-->
+<!--<main class="flex-shrink-0">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-8">-->
+<!--                <h1>New questions</h1>-->
+
+
+
+<!--                <div class="row question">-->
+<!--                <div class="col-3">-->
+<!--                    <img src="../static/imgs/12.png.webp" alt="" class="avatar-image">-->
+<!--                    <div class="votes">-->
+<!--                        <div style="display: flex;">-->
+<!--                            <div style="margin-left:45px; margin-right:45px;">5</div>-->
+<!--                            <button>+</button>-->
+<!--                            <button>-</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <div class="question-title">First Question </div>-->
+<!--                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been-->
+<!--                    the industry's standard dummy text ever since the 1500s, when an unknown printer took-->
+<!--                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,-->
+<!--                    but also the leap into electronic typesetting, remaining essentially unchanged.-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <p style="margin-top: 15px;">-->
+<!--                            <a href="" style="padding-right:40px">answer (1)</a>-->
+<!--                            Tags:-->
+<!--                            <a href="" style="padding-right:4px">first-tag</a>-->
+<!--                            <a href="" style="padding-right:4px">second-tag</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--                <div class="row question">-->
+<!--                <div class="col-3">-->
+<!--                    <img src="../static/imgs/12.png.webp" alt="" class="avatar-image">-->
+<!--                    <div class="votes">-->
+<!--                        <div style="display: flex;">-->
+<!--                            <div style="margin-left:45px; margin-right:45px;">5</div>-->
+<!--                            <button>+</button>-->
+<!--                            <button>-</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <div class="question-title">Second Question </div>-->
+<!--                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been-->
+<!--                    the industry's standard dummy text ever since the 1500s, when an unknown printer took-->
+<!--                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,-->
+<!--                    but also the leap into electronic typesetting, remaining essentially unchanged.-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <p style="margin-top: 15px;">-->
+<!--                            <a href="" style="padding-right:40px">answer (2)</a>-->
+<!--                            Tags:-->
+<!--                            <a href="" style="padding-right:4px">first-tag</a>-->
+<!--                            <a href="" style="padding-right:4px">second-tag</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--                <div class="row question">-->
+<!--                <div class="col-3">-->
+<!--                    <img src="../static/imgs/12.png.webp" alt="" class="avatar-image">-->
+<!--                    <div class="votes">-->
+<!--                        <div style="display: flex;">-->
+<!--                            <div style="margin-left:45px; margin-right:45px;">5</div>-->
+<!--                            <button>+</button>-->
+<!--                            <button>-</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-9">-->
+<!--                    <div class="question-title">Third Question </div>-->
+<!--                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been-->
+<!--                    the industry's standard dummy text ever since the 1500s, when an unknown printer took-->
+<!--                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,-->
+<!--                    but also the leap into electronic typesetting, remaining essentially unchanged.-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <p style="margin-top: 15px;">-->
+<!--                            <a href="" style="padding-right:40px">answer (3)</a>-->
+<!--                            Tags:-->
+<!--                            <a href="" style="padding-right:4px">first-tag</a>-->
+<!--                            <a href="" style="padding-right:4px">second-tag</a>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <p>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">1</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">2</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">3</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">...</a></button>-->
+<!--                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">53</a></button>-->
+
+<!--                    </p>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-4">-->
+<!--                <div class="row">-->
+<!--                    <div class="h2">Popular Tags</div>-->
+<!--                    <div class="tags">-->
+<!--                        <span class="badge bg-primary">Python</span>-->
+<!--                        <span class="badge bg-secondary">Voloshin</span>-->
+<!--                        <span class="badge bg-success">CSS</span>-->
+<!--                        <span class="badge bg-dark">Django</span>-->
+<!--                        <span class="badge bg-primary">Techpark</span>-->
+<!--                    </div>-->
+<!--                    <br/>-->
+<!--                    <h2>Best Members</h2>-->
+<!--                    <ul class="list-group" style=" margin-left:15px; max-width:250px;">-->
+<!--                        <li class="list-group-item"><a href="">Mr.Pepper</a></li>-->
+<!--                        <li class="list-group-item"><a href="">Dr.House</a></li>-->
+<!--                        <li class="list-group-item"><a href="">Bender</a></li>-->
+<!--                        <li class="list-group-item"><a href="">Queen Victoria</a></li>-->
+<!--                        <li class="list-group-item"><a href="">V.Pupkin</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
 <!--    </div>-->
-<!--  </nav>-->
+<!--    <footer class="bg-dark text-light fixed-bottom d-flex flex-wrap align-items-center py-3 border-top" style="grid-template-columns: 1fr 2fr;">-->
+<!--              <p class="col-md-4 mb-0 text-white p-2"> 2023 Ivan Mareev</p>-->
 
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <h1 class="title">AskPupkin</h1>
-                </div>
+<!--              <p class=" h4 col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto "> AskPupkin</p>-->
 
-                <div class="col-5">
-                    <p>
-                        <searchbar class="topnav"><input type="text" placeholder="Search.."></searchbar>
-                        <button class="typebtn"><span>ASK!</span></button>
-
-                    </p>
-
-                </div>
-
-                <div class="col-4">
-                    <p>
-                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="">log in</a></div>
-                        <div style="float: left; margin-top:30px; margin-left:10px;"><a href="">register</a></div>
-                    </p>
-                </div>
+<!--              <ul class="nav col-md-4 justify-content-end">-->
+<!--                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>-->
+<!--                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>-->
+<!--                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>-->
+<!--                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>-->
+<!--              </ul>-->
+<!--        </footer>-->
+<!--</main>-->
 
 
-            </div>
-        </div>
+<!--&lt;!&ndash;<footer class="footer mt-auto py-3 bg-light">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;    <span class="text-muted">Place sticky footer content here.</span>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</footer>&ndash;&gt;-->
 
 
-    <hr style="height:3px;">
-
-</header>
-
-<!-- Begin page content -->
-<main class="flex-shrink-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-8">
-                <h1>New questions</h1>
+<!--    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
 
 
-
-                <div class="row question">
-                <div class="col-3">
-                    <img src="../static/imgs/12.png.webp" alt="" class="avatar-image">
-                    <div class="votes">
-                        <div style="display: flex;">
-                            <div style="margin-left:45px; margin-right:45px;">5</div>
-                            <button>+</button>
-                            <button>-</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="question-title">First Question </div>
-                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <div>
-                        <p style="margin-top: 15px;">
-                            <a href="" style="padding-right:40px">answer (1)</a>
-                            Tags:
-                            <a href="" style="padding-right:4px">first-tag</a>
-                            <a href="" style="padding-right:4px">second-tag</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-                <div class="row question">
-                <div class="col-3">
-                    <img src="../static/imgs/12.png.webp" alt="" class="avatar-image">
-                    <div class="votes">
-                        <div style="display: flex;">
-                            <div style="margin-left:45px; margin-right:45px;">5</div>
-                            <button>+</button>
-                            <button>-</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="question-title">Second Question </div>
-                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <div>
-                        <p style="margin-top: 15px;">
-                            <a href="" style="padding-right:40px">answer (2)</a>
-                            Tags:
-                            <a href="" style="padding-right:4px">first-tag</a>
-                            <a href="" style="padding-right:4px">second-tag</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-                <div class="row question">
-                <div class="col-3">
-                    <img src="../static/imgs/12.png.webp" alt="" class="avatar-image">
-                    <div class="votes">
-                        <div style="display: flex;">
-                            <div style="margin-left:45px; margin-right:45px;">5</div>
-                            <button>+</button>
-                            <button>-</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="question-title">Third Question </div>
-                    <div class="question-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                    a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <div>
-                        <p style="margin-top: 15px;">
-                            <a href="" style="padding-right:40px">answer (3)</a>
-                            Tags:
-                            <a href="" style="padding-right:4px">first-tag</a>
-                            <a href="" style="padding-right:4px">second-tag</a>
-                        </p>
-                    </div>
-                </div>
-                </div>
-
-                <div>
-                    <p>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">1</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">2</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">3</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">...</a></button>
-                        <button class="pagebtn"><a href="" style="text-decoration:none; color:black;">53</a></button>
-
-                    </p>
-
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="h2">Popular Tags</div>
-                    <div class="tags">
-                        <span class="badge bg-primary">Python</span>
-                        <span class="badge bg-secondary">Voloshin</span>
-                        <span class="badge bg-success">CSS</span>
-                        <span class="badge bg-dark">Django</span>
-                        <span class="badge bg-primary">Techpark</span>
-                    </div>
-                    <br/>
-                    <h2>Best Members</h2>
-                    <ul class="list-group" style=" margin-left:15px; max-width:250px;">
-                        <li class="list-group-item"><a href="">Mr.Pepper</a></li>
-                        <li class="list-group-item"><a href="">Dr.House</a></li>
-                        <li class="list-group-item"><a href="">Bender</a></li>
-                        <li class="list-group-item"><a href="">Queen Victoria</a></li>
-                        <li class="list-group-item"><a href="">V.Pupkin</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <footer class="bg-dark text-light fixed-bottom d-flex flex-wrap align-items-center py-3 border-top" style="grid-template-columns: 1fr 2fr;">
-              <p class="col-md-4 mb-0 text-white p-2"> 2023 Ivan Mareev</p>
-
-              <p class=" h4 col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto "> AskPupkin</p>
-
-              <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
-              </ul>
-        </footer>
-</main>
-
-
-<!--<footer class="footer mt-auto py-3 bg-light">-->
-<!--  <div class="container">-->
-<!--    <span class="text-muted">Place sticky footer content here.</span>-->
-<!--  </div>-->
-<!--</footer>-->
-
-
-    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
-  </body>
-</html>
+<!--  </body>-->
+<!--</html>-->
