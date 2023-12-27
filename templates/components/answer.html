@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="d-flex flex-row mt-4 border-bottom">
+        <div class="col-2m d-flex flex-column align-items-center">
+            <button class="round-button-up d-block mt-2"> </button>
+            <p class="h5 text-center"> 2 </p>
+            <button class="round-button-down d-block"> </button>
+            <img src="{% static '/images/galochka.png' %}" alt="mdo" width="32" height="32" class="rounded-circle">
+        </div>
+        <div class="col-7 ms-3">
+            <p  class="d-block link-body-emphasis text-decoration-none ms-2 ">
+                {{ answer.text }}
+            </p>
+        </div>
+        <div class="col-3 d-flex align-items-center mt-auto ms-5 mb-3">
+            <img src="{% static '/images/user.jpg' %}" alt="mdo" width="24" height="24" class="rounded-circle">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none small ms-2">Mareev</a>
+        </div>
+</div>

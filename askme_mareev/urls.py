@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls import include
-from askme.views import *
+from app import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
+    path('login/', views.login, name='login'),
+    path('signup/', views.signup, name='signup'),
+    path('ask/', views.ask, name='ask'),
+    path('question/<int:question_id>', views.question, name='question'),
     path('admin/', admin.site.urls),
-    path('', include('askme.urls'))
 ]
 
-handler404 = page_not_found
+handler404 = 'app.views.custom_404'

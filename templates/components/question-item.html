@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="d-flex flex-row mt-4 border-bottom">
+        <div class="col-2 m">
+            <ul class="list-unstyled">
+                <li class="list-group-item justify-content-between align-items-center">
+                    votes
+                    <span class="badge bg-primary rounded-pill mt-1">{{ question.votes }}</span>
+                </li>
+                <li class="list-group-item justify-content-between align-items-center mt-1">
+                    answers
+                    <span class="badge bg-primary rounded-pill">{{ question.answers }}</span>
+                </li>
+                <li class="list-group-item justify-content-between align-items-center mt-1">
+                    views
+                    <span class="badge bg-primary rounded-pill">{{ question.views }}</span>
+                </li>
+            </ul>
+
+            <div class="d-flex align-items-center">
+                <button class="round-button-up"></button>
+                <p class="h5 mx-2 mb-0">3</p>
+                <button class="round-button-down"></button>
+            </div>
+        </div>
+        <div class="col-7">
+            <a href="{% url 'question' question.id %}"  class="d-block link-body-emphasis text-decoration-none ms-2 ">
+                {{ question.title }}
+            </a>
+            <button type="button" class="btn btn-outline-primary m-1 p-1">SQL</button>
+        </div>
+
+        <div class="col-3 d-flex align-items-center">
+            <img src="{% static '/images/user.jpg' %}" alt="mdo" width="24" height="24" class="rounded-circle">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none small ms-2">X</a>
+            <p class="small ms-2 mt-3">answered</p>
+        </div>
+</div>
