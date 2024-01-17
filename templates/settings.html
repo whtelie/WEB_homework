@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block navbar %}
+
+{% include 'components/regged-navbar.html' %}
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Settings</h1>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Login</label>
+    <input class="form-control" id="exampleFormControlTextarea1" placeholder="marv">
+    <hr>
+    <label for="exampleFormControlTextarea2" class="form-label">Email</label>
+    <input class="form-control" id="exampleFormControlTextarea2" placeholder="mareev@gmail.com">
+    <hr>
+    <label for="exampleFormControlTextarea3" class="form-label">Username</label>
+    <input class="form-control" id="exampleFormControlTextarea3" placeholder="marv">
+    <hr>
+    <label for="exampleFormControlTextarea4" class="form-label">New password</label>
+    <input class="form-control" id="exampleFormControlTextarea4" placeholder="******">
+    <hr>
+    <label for="exampleFormControlTextarea5" class="form-label">Old password</label>
+    <input class="form-control" id="exampleFormControlTextarea5" placeholder="******">
+    <hr>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Change avatar</label>
+        <input class="form-control" type="file" id="formFile">
+    </div>
+</div>
+<button type="button" class="btn btn-primary bottom-element">Save preferences</button>
+
+{% endblock %}

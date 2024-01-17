@@ -1,5 +1,5 @@
 """
-URL configuration for askme_mareev project.
+URL configuration for vk_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,12 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls import include
-from askme.views import *
+from app import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
+    path('hot', views.hot, name='hot'),
+    path('top', views.top, name='top'),
+    path('tag/<str:tag_name>', views.tag, name='tag'),
+    path('question/<int:question_id>', views.question, name='question'),
+    path('login/', views.log_in, name='login'),
+    path('signup/', views.signup, name='signup'),
+    path('settings/', views.settings, name='settings'),
+    path('ask/', views.ask, name='ask'),
     path('admin/', admin.site.urls),
-    path('', include('askme.urls'))
 ]
-
-handler404 = page_not_found
