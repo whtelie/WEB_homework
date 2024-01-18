@@ -14,6 +14,7 @@
     <div class="top-items"><a href="{% url 'hot' %}">Hot questions</a></div>
 </div>
 
+{% csrf_token %}
 {% for question in page_obj %}
 
 {% include 'components/question-item.html' %}

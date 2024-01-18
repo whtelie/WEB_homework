@@ -5,7 +5,8 @@
         <img src="{% static '/img/projectmage.jpeg' %}" class="question-image">
         <div class="container d-flex justify-content-center align-items-center">
             <button class="btn"><i class="gg-chevron-down-r"></i></button>
-            <div class="h5 mb-0">{{ answer.total_votes }}</div>
+<!--            <div class="h5 mb-0">{{ answer.total_votes }}</div>-->
+            <div class="h5 mb-0">{{ answer.totaly_votes|default:0 }}</div>
             <button class="btn"><i class="gg-chevron-up-r"></i></button>
         </div>
         <div class="form-check">

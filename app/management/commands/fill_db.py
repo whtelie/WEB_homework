@@ -3,7 +3,7 @@ from faker import Faker
 from django.contrib.auth.models import User
 import random
 
-from app.models import Question, Answer, Profile, Tag, Vote
+from app.models import Question, Answer, Profile, Tag, QuestionVote, AnswerVote
 
 fake = Faker()
 
@@ -81,9 +81,8 @@ class Command(BaseCommand):
             title = fake.sentence(nb_words=6)
             content = fake.paragraph()
             created_at = fake.date_between(start_date='-1y', end_date='today')
-            total_votes = 10
 
-            question = Question(user=user, title=title, content=content, created_at=created_at, total_votes=total_votes)
+            question = Question(user=user, title=title, content=content, created_at=created_at)
 
             user_usernames = set()
             for _ in range(15):
@@ -93,7 +92,7 @@ class Command(BaseCommand):
                     if username not in user_usernames:
                         break
                 user_usernames.add(username)
-                votes.append(Vote(user=user, question=question, answer=None, value=1))
+                votes.append(QuestionVote(user=user, question=question, value=1))
 
             for _ in range(5):
                 while True:
@@ -102,7 +101,7 @@ class Command(BaseCommand):
                     if username not in user_usernames:
                         break
                 user_usernames.add(username)
-                votes.append(Vote(user=user, question=question, answer=None, value=-1))
+                votes.append(QuestionVote(user=user, question=question, value=-1))
 
             user_usernames_for_answers = set()
             for _ in range(10):
@@ -129,9 +128,9 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS('Question objects - DONE'))
 
-        Vote.objects.bulk_create(votes)
+        QuestionVote.objects.bulk_create(votes)
 
-        self.stdout.write(self.style.SUCCESS('Vote objects - DONE'))
+        self.stdout.write(self.style.SUCCESS('QuestionVote objects - DONE'))
 
         Answer.objects.bulk_create(answers)
 
